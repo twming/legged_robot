@@ -1,0 +1,68 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+    use_sim_time: True
+
+    joint_group_effort_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+joint_group_effort_controller:
+  ros__parameters:
+    use_sim_time: True
+    joints:
+      - lf_hip_joint
+      - lf_upper_leg_joint
+      - lf_lower_leg_joint
+      - rf_hip_joint
+      - rf_upper_leg_joint
+      - rf_lower_leg_joint
+      - lh_hip_joint
+      - lh_upper_leg_joint
+      - lh_lower_leg_joint
+      - rh_hip_joint
+      - rh_upper_leg_joint
+      - rh_lower_leg_joint
+    
+    command_interfaces:
+      - effort
+    state_interfaces:
+      - position
+      - velocity
+
+    # Increased gains to handle the mass of the Go2 quadruped
+    gains:
+      lf_hip_joint        : {p: 500.0,  i: 0.2, d: 5.0, i_clamp: 2.5}
+      lf_upper_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      lf_lower_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      
+      rf_hip_joint        : {p: 500.0,  i: 0.2, d: 5.0, i_clamp: 2.5}
+      rf_upper_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      rf_lower_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      
+      lh_hip_joint        : {p: 500.0,  i: 0.2, d: 5.0, i_clamp: 2.5}
+      lh_upper_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      lh_lower_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      
+      rh_hip_joint        : {p: 500.0,  i: 0.2, d: 5.0, i_clamp: 2.5}
+      rh_upper_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+      rh_lower_leg_joint  : {p: 1000.0, i: 0.5, d: 10.0, i_clamp: 5.0}
+
+    # Constraints prevent the controller from 'aborting' if the robot gets stuck
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 0.0
+      lf_hip_joint: {trajectory: 0.0, goal: 0.0}
+      lf_upper_leg_joint: {trajectory: 0.0, goal: 0.0}
+      lf_lower_leg_joint: {trajectory: 0.0, goal: 0.0}
+      rf_hip_joint: {trajectory: 0.0, goal: 0.0}
+      rf_upper_leg_joint: {trajectory: 0.0, goal: 0.0}
+      rf_lower_leg_joint: {trajectory: 0.0, goal: 0.0}
+      lh_hip_joint: {trajectory: 0.0, goal: 0.0}
+      lh_upper_leg_joint: {trajectory: 0.0, goal: 0.0}
+      lh_lower_leg_joint: {trajectory: 0.0, goal: 0.0}
+      rh_hip_joint: {trajectory: 0.0, goal: 0.0}
+      rh_upper_leg_joint: {trajectory: 0.0, goal: 0.0}
+      rh_lower_leg_joint: {trajectory: 0.0, goal: 0.0}

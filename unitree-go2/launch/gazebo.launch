@@ -1,0 +1,33 @@
+<launch>
+    <arg name="robot_name"         default="go2"/>
+    <arg name="use_sim_time"       default="true"/>
+    <arg name="gui"                default="true"/>
+    <arg name="headless"           default="false"/>
+    <arg name="paused"             default="false"/>
+    <arg name="gazebo_world"       default="$(find-pkg-share unitree-go2)/worlds/outdoor.world" />
+    <arg name="world_init_x"       default="0.0" />
+    <arg name="world_init_y"       default="0.0" />
+    <arg name="world_init_z"       default="0.3" />
+    <arg name="world_init_heading" default="0.0" />
+
+    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
+        <arg name="world" value="$(var gazebo_world)"/>
+        <arg name="gui"   value="$(var gui)" />
+        <arg name="pause" value="$(var paused)"/>
+    </include>
+
+    <group>
+        <!-- <push-ros-namespace namespace="$(var robot_name)"/> -->
+
+        <node name="urdf_spawner" pkg="gazebo_ros" exec="spawn_entity.py"
+              args="-entity $(var robot_name) -topic /robot_description -x $(var world_init_x) -y $(var world_init_y) -z $(var world_init_z) -Y $(var world_init_heading) -R 0.0 -P 0.0" />
+
+        <node pkg="controller_manager" exec="spawner" name="joint_state_broadcaster_spawner"
+            args="joint_state_broadcaster --ros-args --params-file $(find-pkg-share unitree-go2)/config/ros_control.yaml" />
+
+        <node pkg="controller_manager" exec="spawner" name="joint_group_controller_spawner"
+            args="joint_group_effort_controller" />
+
+        <!-- <node pkg="champ_gazebo" exec="contact_sensor" name="contact_sensor" output="screen"/> -->
+    </group>
+</launch>
