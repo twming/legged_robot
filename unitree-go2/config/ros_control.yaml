@@ -34,21 +34,19 @@ joint_group_effort_controller:
 
     # Increased gains to provide enough torque to lift the robot
     gains:
-      lf_hip_joint: {p: 100.0, i: 0.0, d: 0.65, i_clamp: 2.5}
-      lf_upper_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      lf_lower_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      
+      lf_hip_joint: {p: 100.0, i: 0.0, d: 5.0, i_clamp: 2.5}
+      lf_upper_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
+      lf_lower_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
       rf_hip_joint: {p: 100.0, i: 0.0, d: 5.0, i_clamp: 2.5}
-      rf_upper_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      rf_lower_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      
+      rf_upper_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
+      rf_lower_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
       lh_hip_joint: {p: 100.0, i: 0.0, d: 5.0, i_clamp: 2.5}
-      lh_upper_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      lh_lower_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      
+      lh_upper_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
+      lh_lower_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
       rh_hip_joint: {p: 100.0, i: 0.0, d: 5.0, i_clamp: 2.5}
-      rh_upper_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
-      rh_lower_leg_joint: {p: 500.0, i: 0.0, d: 0.65, i_clamp: 5.0}
+      rh_upper_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
+      rh_lower_leg_joint: {p: 500.0, i: 0.0, d: 5.0, i_clamp: 5.0}
+      
 
     # Setting constraints to 0.0 allows the robot to keep trying even with high error
     constraints:
